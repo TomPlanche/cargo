@@ -611,6 +611,12 @@ pub fn cargo_pkg_rust_version() -> Option<String> {
     to_opt(var_or_panic("CARGO_PKG_RUST_VERSION")).map(to_string)
 }
 
+/// The Rust edition of the package being built (for example, `2015`, `2018`, `2021`, `2024`).
+#[track_caller]
+pub fn cargo_pkg_edition() -> String {
+    to_string(var_or_panic("CARGO_PKG_EDITION"))
+}
+
 /// Path to the README file of your package.
 #[track_caller]
 pub fn cargo_pkg_readme() -> Option<PathBuf> {
