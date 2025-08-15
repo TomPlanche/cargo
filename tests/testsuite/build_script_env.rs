@@ -7,30 +7,6 @@ use cargo_test_support::sleep_ms;
 use cargo_test_support::str;
 
 #[cargo_test]
-fn rust_edition_env_is_set() {
-    let p = project()
-        .file("Cargo.toml", &basic_manifest("foo", "0.0.1"))
-        .file(
-            "src/main.rs",
-            "fn main() {}",
-        )
-        .file(
-            "build.rs",
-            r#"
-                fn main() {
-                    let ed = std::env::var("RUST_EDITION").unwrap();
-                    eprintln!("RUST_EDITION={}", ed);
-                }
-            "#,
-        )
-        .build();
-
-    p.cargo("check -vv")
-        .with_stderr_contains("[..] RUST_EDITION=2015")
-        .run();
-}
-
-#[cargo_test]
 fn rerun_if_env_changes() {
     let p = project()
         .file("src/main.rs", "fn main() {}")
@@ -250,6 +226,30 @@ fn build_script_env_verbose() {
 [RUNNING] `[..]CARGO=[..]build-script-build`
 ...",
         )
+        .run();
+}
+
+#[cargo_test]
+fn cargo_pkg_edition_env_is_set() {
+    let p = project()
+        .file("Cargo.toml", &basic_manifest("foo", "0.0.1"))
+        .file(
+            "src/main.rs",
+            "fn main() {}",
+        )
+        .file(
+            "build.rs",
+            r#"
+                fn main() {
+                    let ed = std::env::var("CARGO_PKG_EDITION").unwrap();
+                    eprintln!("CARGO_PKG_EDITION={}", ed);
+                }
+            "#,
+        )
+        .build();
+
+    p.cargo("check -vv")
+        .with_stderr_contains("[..] CARGO_PKG_EDITION=2015")
         .run();
 }
 

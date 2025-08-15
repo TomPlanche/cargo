@@ -246,6 +246,7 @@ corresponding environment variable is set to the empty string, `""`.
 * `CARGO_PKG_RUST_VERSION` --- The Rust version from the manifest of your package.
   Note that this is the minimum Rust version supported by the package, not the
   current Rust version.
+* `CARGO_PKG_EDITION` --- The Rust edition of the package being built (for example, `2015`, `2018`, `2021`, `2024`).
 * `CARGO_PKG_README` --- Path to the README file of your package.
 * `CARGO_CRATE_NAME` --- The name of the crate that is currently being compiled. It is the name of the [Cargo target] with `-` converted to `_`, such as the name of the library, binary, example, integration test, or benchmark.
 * `CARGO_BIN_NAME` --- The name of the binary that is currently being compiled.
@@ -397,7 +398,6 @@ let out_dir = env::var("OUT_DIR").unwrap();
   [`build.rustflags`]. Note that since Rust 1.55, `RUSTFLAGS` is removed from
   the environment; scripts should use `CARGO_ENCODED_RUSTFLAGS` instead.
 * `CARGO_PKG_<var>` --- The package information variables, with the same names and values as are [provided during crate building][variables set for crates].
-* `RUST_EDITION` --- The Rust edition of the package being built (for example, `2015`, `2018`, `2021`, `2024`).
 
 [`tracing`]: https://docs.rs/tracing
 [debug logging]: https://doc.crates.io/contrib/implementation/debugging.html#logging
