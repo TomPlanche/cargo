@@ -612,6 +612,7 @@ pub fn cargo_pkg_rust_version() -> Option<String> {
 }
 
 /// The Rust edition of the package being built (for example, `2015`, `2018`, `2021`, `2024`).
+#[doc = requires_msrv!("1.88")]
 #[track_caller]
 pub fn cargo_pkg_edition() -> String {
     to_string(var_or_panic("CARGO_PKG_EDITION"))

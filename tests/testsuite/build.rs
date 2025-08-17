@@ -1629,6 +1629,7 @@ fn crate_env_vars() {
                 static LICENSE: &'static str = env!("CARGO_PKG_LICENSE");
                 static LICENSE_FILE: &'static str = env!("CARGO_PKG_LICENSE_FILE");
                 static DESCRIPTION: &'static str = env!("CARGO_PKG_DESCRIPTION");
+                static EDITION: &'static str = env!("CARGO_PKG_EDITION");
                 static RUST_VERSION: &'static str = env!("CARGO_PKG_RUST_VERSION");
                 static README: &'static str = env!("CARGO_PKG_README");
                 static BIN_NAME: &'static str = env!("CARGO_BIN_NAME");
@@ -1931,7 +1932,7 @@ fn issue_14194_deduplicate_library_path_env_var() {
                         if level == 0 {{
                             return;
                         }}
-                        
+
                         let _  = Command::new(std::env!("CARGO"))
                         .arg("run")
                         .arg("--")

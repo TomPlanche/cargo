@@ -22,8 +22,8 @@ use crate::core::dependency::DepKind;
 use crate::core::resolver::features::ForceAllTargets;
 use crate::core::resolver::{HasDevUnits, Resolve};
 use crate::core::{
-    CliUnstable, Dependency, Features, Manifest, PackageId, PackageIdSpec, SerializedDependency,
-    SourceId, Target,
+    CliUnstable, Dependency, Edition, Features, Manifest, PackageId, PackageIdSpec,
+    SerializedDependency, SourceId, Target,
 };
 use crate::core::{Summary, Workspace};
 use crate::sources::source::{MaybePackage, SourceMap};
@@ -172,6 +172,11 @@ impl Package {
     /// Gets the package's minimum Rust version.
     pub fn rust_version(&self) -> Option<&RustVersion> {
         self.manifest().rust_version()
+    }
+
+    /// Gets the package's language edition
+    pub fn edition(&self) -> Edition {
+        self.manifest().edition()
     }
 
     /// Gets the package's hints.
