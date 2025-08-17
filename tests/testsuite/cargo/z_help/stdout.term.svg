@@ -30,7 +30,7 @@
 </tspan>
     <tspan x="10px" y="136px"><tspan>    -Z bindeps                     Allow Cargo packages to depend on bin, cdylib, and staticlib crates, and use the artifacts built by those crates</tspan>
 </tspan>
-    <tspan x="10px" y="154px"><tspan>    -Z build-dir                   Enable the `build.build-dir` option in .cargo/config.toml file</tspan>
+    <tspan x="10px" y="154px"><tspan>    -Z build-analysis              Record and persist build metrics across runs, with commands to query past builds.</tspan>
 </tspan>
     <tspan x="10px" y="172px"><tspan>    -Z build-std                   Enable Cargo to compile the standard library itself as part of a crate graph compilation</tspan>
 </tspan>
