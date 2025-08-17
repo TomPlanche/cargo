@@ -230,6 +230,30 @@ fn build_script_env_verbose() {
 }
 
 #[cargo_test]
+fn cargo_pkg_edition_env_is_set() {
+    let p = project()
+        .file("Cargo.toml", &basic_manifest("foo", "0.0.1"))
+        .file(
+            "src/main.rs",
+            "fn main() {}",
+        )
+        .file(
+            "build.rs",
+            r#"
+                fn main() {
+                    let ed = std::env::var("CARGO_PKG_EDITION").unwrap();
+                    eprintln!("CARGO_PKG_EDITION={}", ed);
+                }
+            "#,
+        )
+        .build();
+
+    p.cargo("check -vv")
+        .with_stderr_contains("[..] CARGO_PKG_EDITION=2015")
+        .run();
+}
+
+#[cargo_test]
 #[cfg(target_arch = "x86_64")]
 fn build_script_sees_cfg_target_feature() {
     let build_rs = r#"

@@ -377,6 +377,7 @@ fn build_work(build_runner: &mut BuildRunner<'_, '_>, unit: &Unit) -> CargoResul
         .env("HOST", &bcx.host_triple())
         .env("RUSTC", &bcx.rustc().path)
         .env("RUSTDOC", &*bcx.gctx.rustdoc()?)
+        .env("CARGO_PKG_EDITION", unit.pkg.manifest().edition().to_string())
         .inherit_jobserver(&build_runner.jobserver);
 
     // Find all artifact dependencies and make their file and containing directory discoverable using environment variables.
